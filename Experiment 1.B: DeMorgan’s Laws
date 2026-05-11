@@ -1,0 +1,18 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+A = np.array([0.2, 0.5, 0.7])
+B = np.array([0.6, 0.3, 0.8])
+
+union = np.maximum(A, B)
+intersection = np.minimum(A, B)
+
+comp_union = 1 - union
+comp_A = 1 - A
+comp_B = 1 - B
+inter_comp = np.minimum(comp_A, comp_B)
+
+plt.plot(comp_union, label="(A U B)'")
+plt.plot(inter_comp, label="A' ∩ B'")
+plt.legend()
+plt.show()
