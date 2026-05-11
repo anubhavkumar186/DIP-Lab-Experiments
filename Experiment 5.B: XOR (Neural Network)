@@ -1,0 +1,23 @@
+import numpy as np
+
+X = np.array([[0,0],[0,1],[1,0],[1,1]])
+y = np.array([[0],[1],[1],[0]])
+
+w1 = np.random.rand(2,2)
+w2 = np.random.rand(2,1)
+
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+
+for _ in range(10000):
+    h = sigmoid(np.dot(X, w1))
+    o = sigmoid(np.dot(h, w2))
+    error = y - o
+    
+    d_o = error * o*(1-o)
+    d_h = d_o.dot(w2.T) * h*(1-h)
+    
+    w2 += h.T.dot(d_o)
+    w1 += X.T.dot(d_h)
+
+print(o)
