@@ -1,0 +1,55 @@
+import numpy as np
+
+# Sigmoid function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Derivative of sigmoid
+def sigmoid_derivative(x):
+    return x * (1 - x)
+
+# Input dataset (XOR)
+X = np.array([[0,0],
+              [0,1],
+              [1,0],
+              [1,1]])
+
+# Target output
+y = np.array([[0],
+              [1],
+              [1],
+              [0]])
+
+# Initialize weights randomly
+np.random.seed(1)
+w1 = np.random.rand(2, 2)   # input → hidden
+w2 = np.random.rand(2, 1)   # hidden → output
+
+learning_rate = 0.5
+
+# Training
+for epoch in range(10000):
+    
+    # Forward propagation
+    hidden_input = np.dot(X, w1)
+    hidden_output = sigmoid(hidden_input)
+    
+    final_input = np.dot(hidden_output, w2)
+    output = sigmoid(final_input)
+    
+    # Error
+    error = y - output
+    
+    # Backpropagation
+    d_output = error * sigmoid_derivative(output)
+    
+    hidden_error = d_output.dot(w2.T)
+    d_hidden = hidden_error * sigmoid_derivative(hidden_output)
+    
+    # Update weights
+    w2 += hidden_output.T.dot(d_output) * learning_rate
+    w1 += X.T.dot(d_hidden) * learning_rate
+
+# Final Output
+print("Predicted Output:")
+print(output)
