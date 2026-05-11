@@ -1,0 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def max_min(R, S):
+    T = np.zeros((R.shape[0], S.shape[1]))
+    for i in range(R.shape[0]):
+        for j in range(S.shape[1]):
+            T[i][j] = np.max(np.minimum(R[i, :], S[:, j]))
+    return T
+
+def max_product(R, S):
+    T = np.zeros((R.shape[0], S.shape[1]))
+    for i in range(R.shape[0]):
+        for j in range(S.shape[1]):
+            T[i][j] = np.max(R[i, :] * S[:, j])
+    return T
+
+# Example: road condition to speed, and speed to risk
+R = np.array([[0.9, 0.1, 0.0],
+              [0.7, 0.8, 0.2],
+              [0.4, 0.6, 0.9]])
+
+S = np.array([[0.8, 0.6],
+              [0.7, 0.5],
+              [0.9, 0.4]])
+
+T_min = max_min(R, S)
+T_prod = max_product(R, S)
+
+print("Accident Risk (Max–Min):\n", T_min)
+print("Accident Risk (Max–Product):\n", T_prod)
