@@ -1,0 +1,17 @@
+import random
+def fitness(x):
+    return -x**2 + 6*x + 9
+pop = [random.uniform(-10,10) for _ in range (10)]
+for _ in range (50):
+    new_pop = []
+    for _ in range (len(pop)):
+        p1 = random.choice(pop)
+        p2 = random.choice(pop)
+        child = (p1+ p2)/2
+        if random.random() < 0.1:
+            child+= random.uniform (-1,1)
+        new_pop.append(child)
+    pop = new_pop
+best = max(pop, key = fitness)
+print("Best x:", round(best, 2))
+print("Max fitness:", round(fitness(best), 2))
