@@ -1,0 +1,24 @@
+import numpy as np
+
+# McCulloch-Pitts Neuron for AND-NOT
+def and_not(a, b):
+    w1 = 1      # weight for A
+    w2 = -1     # weight for B (inhibitory)
+    threshold = 1
+
+    # Weighted sum
+    net_input = a * w1 + b * w2
+
+    # Activation function
+    if net_input >= threshold:
+        return 1
+    else:
+        return 0
+
+
+# Test all input combinations
+inputs = [(0,0), (0,1), (1,0), (1,1)]
+
+print("A  B  Output (A AND NOT B)")
+for a, b in inputs:
+    print(a, " ", b, " ", and_not(a, b))
