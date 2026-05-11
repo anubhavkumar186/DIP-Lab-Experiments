@@ -1,0 +1,46 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.array([
+    [1, 0, 1, 0],
+    [1, 0, 0, 0],
+    [1, 1, 1, 1],
+    [0, 1, 1, 0]
+])
+
+weights = np.random.rand(2, 4)
+
+learning_rate = 0.5
+epochs = 10
+
+for epoch in range(epochs):
+    for x in data:
+        distances = np.linalg.norm(weights - x, axis=1)
+        winner = np.argmin(distances)
+        weights[winner] = weights[winner] + learning_rate * (x - weights[winner])
+
+clusters = []
+for x in data:
+    distances = np.linalg.norm(weights - x, axis=1)
+    winner = np.argmin(distances)
+    clusters.append(winner)
+
+print("Input pattern -> Assigned cluster")
+for i, x in enumerate(data):
+    print(f"{x} -> Cluster {clusters[i] + 1}")
+
+colors = ['red', 'green']
+plt.figure(figsize=(6, 6))
+
+for i, x in enumerate(data):
+    plt.scatter(x[0], x[1], color=colors[clusters[i]], s=100)
+
+plt.title("SOM clustering")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.grid(True)
+
+plt.scatter([], [], color='red', label='Cluster1')
+plt.scatter([], [], color='green', label='Cluster2')
+plt.legend()
+plt.show()
