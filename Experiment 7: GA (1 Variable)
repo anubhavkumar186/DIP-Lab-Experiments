@@ -1,0 +1,17 @@
+import random
+
+def fitness(x):
+    return x**2
+
+pop = [random.uniform(-10,10) for _ in range(10)]
+
+for _ in range(50):
+    pop = sorted(pop, key=fitness, reverse=True)
+    new = pop[:2]
+    while len(new)<10:
+        p1,p2 = random.sample(pop[:5],2)
+        child = (p1+p2)/2
+        new.append(child)
+    pop = new
+
+print(max(pop, key=fitness))
