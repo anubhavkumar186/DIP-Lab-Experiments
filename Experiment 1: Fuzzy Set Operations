@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+
+a = {"a": 0.2, "b": 0.3, "c": 0.6, "d": 0.6}
+b = {"a": 0.9, "b": 0.9, "c": 0.4, "d": 0.5}
+
+keys = list(a.keys())
+
+union = {k: max(a[k], b[k]) for k in keys}
+intersection = {k: min(a[k], b[k]) for k in keys}
+comp_a = {k: 1 - a[k] for k in keys}
+difference = {k: min(a[k], 1 - b[k]) for k in keys}
+
+plt.plot(keys, list(a.values()), label="A", marker='o')
+plt.plot(keys, list(b.values()), label="B", marker='o')
+plt.plot(keys, list(union.values()), label="Union")
+plt.plot(keys, list(intersection.values()), label="Intersection")
+plt.plot(keys, list(comp_a.values()), label="Complement A")
+plt.plot(keys, list(difference.values()), label="A-B")
+
+plt.legend()
+plt.grid()
+plt.show()
