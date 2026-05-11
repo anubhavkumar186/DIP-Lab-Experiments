@@ -1,0 +1,21 @@
+import numpy as np
+
+R1 = np.array([[0.2, 0.5], [0.7, 0.1]])
+R2 = np.array([[0.6, 0.4], [0.3, 0.8]])
+
+def max_min(R1, R2):
+    result = np.zeros((R1.shape[0], R2.shape[1]))
+    for i in range(R1.shape[0]):
+        for j in range(R2.shape[1]):
+            result[i][j] = max(min(R1[i][k], R2[k][j]) for k in range(R2.shape[0]))
+    return result
+
+def max_product(R1, R2):
+    result = np.zeros((R1.shape[0], R2.shape[1]))
+    for i in range(R1.shape[0]):
+        for j in range(R2.shape[1]):
+            result[i][j] = max(R1[i][k] * R2[k][j] for k in range(R2.shape[0]))
+    return result
+
+print("Max-Min:\n", max_min(R1, R2))
+print("Max-Product:\n", max_product(R1, R2))
