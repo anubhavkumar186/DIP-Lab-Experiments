@@ -1,0 +1,23 @@
+import numpy as np
+
+def triangular(x, a, b, c):
+    return max(min((x-a)/(b-a), (c-x)/(c-b)), 0)
+
+x1 = 30
+x2 = 5
+
+dark = triangular(x1, 0, 0, 50)
+medium = triangular(x1, 25, 50, 75)
+light = triangular(x1, 50, 100, 100)
+
+ns = triangular(x2, -10, -5, 0)
+ze = triangular(x2, -2, 0, 2)
+ps = triangular(x2, 0, 5, 10)
+
+rule1 = min(light, ns)
+rule2 = min(medium, ze)
+rule3 = min(dark, ps)
+
+output = (rule1*10 + rule2*50 + rule3*90) / (rule1 + rule2 + rule3)
+
+print("Dimmer Output:", output)
