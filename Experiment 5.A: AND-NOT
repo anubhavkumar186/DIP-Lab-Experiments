@@ -1,0 +1,9 @@
+def and_not(a, b):
+    w1, w2 = 1, -1
+    threshold = 0
+    s = a*w1 + b*w2
+    return 1 if s > threshold else 0
+
+for a in [0,1]:
+    for b in [0,1]:
+        print(a, b, and_not(a,b))
