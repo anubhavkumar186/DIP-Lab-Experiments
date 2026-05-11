@@ -1,0 +1,17 @@
+import numpy as np
+
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+
+X, Y = 3, 5
+
+N = max(0, 1-X/10)
+Z = max(0, 1-abs(X-5)/5)
+P = max(0, X/10)
+
+rule1 = min(N, Z)
+rule2 = min(Z, Z)
+
+output = (rule1*50 + rule2*100)/(rule1 + rule2)
+
+print("Control Output:", output)
