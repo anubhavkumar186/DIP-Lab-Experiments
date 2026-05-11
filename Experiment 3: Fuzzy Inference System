@@ -1,0 +1,15 @@
+SP = 910
+SC = 6.5
+
+N = max(0, (1000-SP)/1000)
+F = 1 - N
+
+M = max(0, (10-SC)/10)
+H = 1 - M
+
+rule1 = min(N, M)
+rule2 = min(F, H)
+
+output = (rule1*50 + rule2*100)/(rule1 + rule2)
+
+print("Voltage Output:", output)
