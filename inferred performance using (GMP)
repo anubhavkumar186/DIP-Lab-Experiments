@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+
+# Membership values
+good_marks = 0.7
+high_attendance = 0.8
+excellent_performance = 0.9
+
+# Step 1: Compute firing strength using AND operation (min)
+alpha = min(good_marks, high_attendance)
+
+# Step 2: Apply GMP
+output = min(alpha, excellent_performance)
+
+print("Firing strength (α):", alpha)
+print("Inferred Performance:", output)
+
+# Optional plot
+plt.bar(['Good Marks', 'High Attendance', 'Excellent Performance'],
+        [good_marks, high_attendance, output],
+        color=['skyblue', 'lightgreen', 'orange'])
+plt.title('Fuzzy Inference using GMP')
+plt.ylabel('Membership Value')
+plt.ylim(0, 1)
+plt.show()
